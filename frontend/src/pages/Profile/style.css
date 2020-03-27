@@ -47,7 +47,7 @@
 .profile-container ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24;
+    gap: 24px;
     list-style: none;
 }
 

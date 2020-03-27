@@ -1,10 +1,11 @@
 import React, { useState} from 'react';
-import {FiArrowLeft} from 'react-icons/fi';
 import {Link, useHistory} from 'react-router-dom';
+import {FiArrowLeft} from 'react-icons/fi';
+
 
 import api from '../../services/api';
-import './style.css';
 
+import './style.css';
 import LogoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
@@ -27,12 +28,14 @@ export default function NewIncident() {
 
         try {
             await api.post('incidents', data, {
-                headers:{
+                headers: {
                     Authorization: ongId,
                 }
-            })
+            }) ; 
+
             history.push('/profile');
-        } catch(err) {
+
+        } catch (err) {
             alert('Erro ao cadastrar caso, tente novamente.');
         }
     }
@@ -47,25 +50,29 @@ export default function NewIncident() {
                     <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
                     <Link className="back-link" to="/profile">
                         < FiArrowLeft size={16} color="#e02041"/>
-                        Voltar para home
+                        Voltar para Home
                     </Link>
                 </section>
 
-                <form onSubmit={handleNewIncident}>
+                <form>
                     <input 
-                    placeholder="Título do caso"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}/>
+                        placeholder="Título do caso"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                    />
                     <textarea 
-                    placeholder="Descrição"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}/>
+                        placeholder="Descrição"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
                     <input 
-                    placeholder="Valor em reais"
-                    value={value}
-                    onChange={e => setValue(e.target.value)}/>
+                        placeholder="Valor em reais"
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                    />
 
-                    <button className="button" type="submit">Cadastrar</button>
+                    <button onClick={handleNewIncident} className="button" type="submit">Cadastrar</button>
+                    
                 </form>
             </div>
         </div>

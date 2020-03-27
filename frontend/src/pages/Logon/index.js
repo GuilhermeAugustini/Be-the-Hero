@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FiLogIn} from 'react-icons/fi';
 import {Link , useHistory } from 'react-router-dom';
 
-import api from '../../services/api'
+import api from '../../services/api';
 import './style.css';
 
 import LogoImg from '../../assets/logo.svg';
@@ -18,7 +18,7 @@ export default function Logon() {
         try {
             const response = await api.post('sessions', { id });
 
-            localStorage.setItem('ongID', id);
+            localStorage.setItem('ongId', id);
             localStorage.setItem('ongName', response.data.name);
 
             history.push('/profile');

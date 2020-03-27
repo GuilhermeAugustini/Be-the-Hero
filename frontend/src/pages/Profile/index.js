@@ -3,8 +3,8 @@ import { FiPower, FiTrash2} from 'react-icons/fi';
 import {Link, useHistory} from 'react-router-dom';
 
 import api from '../../services/api';
-import './style.css';
 
+import './style.css';
 import LogoImg from '../../assets/logo.svg';
 
 
@@ -23,7 +23,7 @@ export default function Profile(){
             }
         }).then(response => {
             setIncidents(response.data);
-        })
+        });
     }, [ongId]);
 
     async function handleDeleteIncident(id) {
@@ -36,7 +36,7 @@ export default function Profile(){
 
             setIncidents(incidents.filter(incident => incident.id !== id));
         } catch(err) {
-            alert('Erro ao deletar caso, tente novamente')
+            alert('Erro ao deletar caso, tente novamente');
         }
     }
 
@@ -52,7 +52,10 @@ export default function Profile(){
                 <img src={LogoImg} alt="Be The Hero"/>
                 <span>Bem vindo, {ongName}</span>
 
-                <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
+                <Link className="button" to="/incidents/new">
+                    Cadastrar novo caso
+                </Link>
+                
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#E02041"/>
                 </button>
@@ -71,7 +74,12 @@ export default function Profile(){
                         <p>{incident.description}</p>
 
                         <strong>Valor:</strong>
-                        <p>{Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(incident.value)}</p>
+                        <p>
+                            {Intl.NumberFormat('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            }).format(incident.value)}
+                        </p>
 
                         <button onClick={() => handleDeleteIncident(incident.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3"/>
